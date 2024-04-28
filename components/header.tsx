@@ -33,7 +33,7 @@ const Header = () => {
               <Link
                 href={link.hash}
                 className="flex w-full items-center
-              justify-center px-3 py-3 hover:text-gray-950 transition"
+              justify-center px-3 py-3 sm:py-9 md:py-9 hover:text-gray-950 transition"
               >
                 {link.name}
               </Link>
