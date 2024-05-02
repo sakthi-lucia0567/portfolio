@@ -6,10 +6,19 @@ import Link from "next/link";
 import { BsArrowRight, BsLinkedin } from "react-icons/bs";
 import { HiDownload } from "react-icons/hi";
 import { FaGithubSquare } from "react-icons/fa";
+import { useSectionInView } from "@/lib/hooks";
+import { useActiveSectionContext } from "@/context/active-section-context";
 
 const Intro = () => {
+  const { ref } = useSectionInView("Home", 0.5);
+  const { setActiveSection, setTimeOfLastClick } = useActiveSectionContext();
+
   return (
-    <section className="mb-14 max-w-[50rem] text-center sm:mb-10 ">
+    <section
+      ref={ref}
+      id="home"
+      className="mb-14 max-w-[50rem] scroll-mt-28 text-center sm:mb-10"
+    >
       <div className="flex flex-col items-center justify-center">
         <div className="relative">
           <motion.div
@@ -62,6 +71,10 @@ const Intro = () => {
         >
           <Link
             href="#contact"
+            onClick={() => {
+              setActiveSection("Contact");
+              setTimeOfLastClick(Date.now());
+            }}
             className="group flex items-center gap-2 rounded-full bg-gray-900 px-7 py-3 text-white outline-none transition  hover:scale-110 hover:bg-gray-950 focus:scale-110 active:scale-105"
           >
             Contact Me{" "}
@@ -70,7 +83,7 @@ const Intro = () => {
           <a
             href="/public/CV.pdf"
             download={true}
-            className=" group flex cursor-pointer items-center gap-2 rounded-full border border-black/10 bg-white px-7 py-3 text-black  outline-none transition hover:scale-110 focus:scale-110 active:scale-105"
+            className=" borderBlack group flex cursor-pointer items-center gap-2 rounded-full bg-white px-7 py-3 text-black  outline-none transition hover:scale-110 focus:scale-110 active:scale-105"
           >
             Download CV{" "}
             <HiDownload className="opacity-70 transition group-hover:translate-x-1" />
@@ -78,14 +91,14 @@ const Intro = () => {
           <a
             href="https://www.linkedin.com/in/sakthivel/"
             target="_blank"
-            className="flex items-center gap-2 rounded-full border border-black/10 bg-white p-4 text-gray-700 outline-none transition   hover:scale-[1.15] hover:text-gray-950  focus:scale-[1.25] active:scale-105"
+            className="borderBlack flex items-center gap-2 rounded-full bg-white p-4 text-gray-700 outline-none transition   hover:scale-[1.15] hover:text-gray-950  focus:scale-[1.25] active:scale-105"
           >
             <BsLinkedin />
           </a>
           <a
             href="https://github.com/sakthivel"
             target="_blank"
-            className="flex items-center gap-2 rounded-full border border-black/10 bg-white p-4 text-gray-700 outline-none transition hover:scale-[1.15]  hover:text-gray-950    focus:scale-[1.25] active:scale-105"
+            className="borderBlack flex items-center gap-2 rounded-full bg-white p-4 text-gray-700 outline-none transition hover:scale-[1.15]  hover:text-gray-950    focus:scale-[1.25] active:scale-105"
           >
             <FaGithubSquare />
           </a>
